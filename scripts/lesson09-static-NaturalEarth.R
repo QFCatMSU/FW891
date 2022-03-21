@@ -9,6 +9,7 @@
   library(package = "rgeos");    # getting/converting crs
   library(package = "rgdal");    # getting/converting crs
   library(package = "ggplot2");
+  library(package = "dplyr");
   library(package = "sf");       # Simple Features
   library(package = "rnaturalearth");     # for getting coord data
   library(package = "rnaturalearthdata"); # for getting coord data
