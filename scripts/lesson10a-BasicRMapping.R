@@ -3,7 +3,7 @@
 
   # sp needs to be installed before sf package but you will still
   # get an error about sp not being installed -- this can be ignored
-  library(package = "sp");       #old Simple Features (but still needed)
+  library(package = "sp");       # old Simple Features (but still needed)
   library(package = "rgeos");    # getting/converting crs
   library(package = "rgdal");    # getting/converting crs
   library(package = "ggplot2");
@@ -11,23 +11,24 @@
   library(package = "rnaturalearth");     # for getting coord data
   library(package = "rnaturalearthdata"); # for getting coord data
   
-  # lakes110 <- ne_download(scale = 110, type = 'lakes', category = 'physical')
-  # sp::plot(lakes110, col = 'blue');
+  ### How I downloaded the lakes... can someone test this code.
+  # lakes110 = ne_download(scale = 110, type = 'lakes', category = 'physical')
   
-  # look for Geodetic CRS in simple feature
-  
+  # read in data from a csv file with spatial data
   museums = st_read(dsn="data/museum.csv");
   ## When you convert a CSV to a simple feature, you need to
   #   supply the longitude and latitude columns (in that order)
-  ## This SF has no crs -- will cause error when plotting
-  #   error: cannot transform sfc object with missing crs
   museums_SF1 = st_as_sf(museums, 
-                         coords = c("lng", "lat"));  # you need to provide long/lat columns
+                         coords = c("lng", "lat")); 
+  
+  #### look for Geodetic CRS in simple feature
+  ## The above SF has no crs -- will cause error when plotting
+  #   error: cannot transform sfc object with missing crs
   
   # add the crs so it can be plotted
   museums_SF2 = st_as_sf(museums, 
                          coords = c("lng", "lat"),
-                         crs = 4326);
+                         crs = 4326);  # it's a guess since no crs info was given
   
   #### Group 1:
   #  Using a text editor (RStudio is a text editor):    
@@ -92,18 +93,23 @@
         expand = TRUE);
   plot(plot3);
   
-  ##Searchable list of CRS numbers:
-  # https://spatialreference.org/ref/epsg/
+
     
-  # Zoom this map into Great Lakes region
-  #### add Canada to the map ####
-  #### add Lake Erie to the map ###
-  #### add Detroit, Chicago, Toronto as points to the map ####
-  #### Use UTM 14N (26914) -- add adjust values to get same view
-  #### Pick 2 other CRS from to use
+  ####Group 2
+  # - Zoom this map into Great Lakes region
+  # - Use UTM 14N (CRS = 26914)
+  # - add Canada to the map (from naturalearth.com or using ne_download()
+  # - add Lake Erie to the map (download from Michigan arcgis)
+  # - add Detroit, Chicago, Toronto as points to the map
+  # - Do the same plot with 2 other CRS 
   
-  ### Create a map using your shapefile
-  ##  Make sure you have map zoomed in to the area
+  ##Searchable list of CRS numbers:
+  # https://spatialreference.org/ref/epsg/  
+
+  
+  ### Homework: Create a map using your shapefile
+  #   - make sure you have an appropriate background map
+  #   - have an appropriate crs and axes zoomed appropriately 
   
   ### Next:
   #   Manually add lines ####
