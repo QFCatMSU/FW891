@@ -75,13 +75,13 @@
 
   #### Adding titles
   multi5a=arrangeGrob(plot1, plot2, plot3, plot4,
-                      top=textGrob(label="I llove llamas", 
+                      top=textGrob(label="I llove llamas",  # Grobs are another lesson...
                                    gp=gpar(col="blue")),
                       bottom="And so should you",
                       layout_matrix = rbind(c(1,1,2),
-                                           c(1,1,NA),
-                                           c(4,3,3),
-                                           c(4,NA,NA)));
+                                            c(1,1,NA),
+                                            c(4,3,3),
+                                            c(4,NA,NA)));
   plot(multi5a);
 
   #### Declaring the matrix first
@@ -91,7 +91,7 @@
                            4,3,3,
                            4,NA,NA));
   
-  #### Extending plots across rows and columns
+  #### Extending plots across rows and columns using matrix
   multi5b=arrangeGrob(plot1, plot2, plot3, plot4,
                       layout_matrix = layout);
   plot(multi5b);
