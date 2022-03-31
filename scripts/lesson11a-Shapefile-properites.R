@@ -16,8 +16,12 @@
   library(package = "rnaturalearthdata"); # for getting coord data
 
   museums = st_read(dsn="data/museum.csv");
-
-  # add the crs and coordinates so it can be converted into a simple feature
+  
+  # The simple features (SF) museums is the museums data frame 
+  # with these differences: 
+  #   - SF has meta data (bounding box, CRS, geometry) 
+  #   - SF combines the coordinates from the data frame into geometry
+  # Otherwise, they are the same (i.e., the columns in the data frames are the same)
   museums_SF1 = st_as_sf(museums, 
                          coords = c("lng", "lat"),
                          crs = 4326);
@@ -29,6 +33,7 @@
   print(museums_SF1);
   print(museums_SF2);
   
+  #### Finding meta data for large shapefiles is hard so...
   # Look at the bounding boxes for both of the simple features:
   boundBox1 = st_bbox(museums_SF1);
   boundBox2 = st_bbox(museums_SF2);
@@ -47,7 +52,7 @@
   #    - Linestring (multiple points with line between consecutive points)
   #    - Multilinestring (mutiple linestrings)
   #    - Polygon    (linestring with a line connecting first and last point)
-  #    - Multipolygon (mutiple linestrings)
+  #    - Multipolygon (mutiple polygons)
   
   # Plot the museum simple feature by itself
   #  Note: geom_sf will use the "bounding box" to determine the axes
@@ -106,4 +111,11 @@
                  color = "blue") +
     coord_sf(crs = 26917);   # changing CRS
   plot(plot4);
+  
+  
+  #### Application #####
+  #   Add three new points to the data frame 
+  #   - use only one SF
+  #   - make each point a different color, size, and shape
+  #   - make sure the bounding box does not change because of the new points
 }

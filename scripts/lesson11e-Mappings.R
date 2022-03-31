@@ -60,4 +60,7 @@
         expand = TRUE);
   plot(plot3);
 
+  #### Application #####
+  #   Customize every mapping in the plot (i.e., choose your own colors,
+  #      gradients, point shapes, and line shapes)
 }

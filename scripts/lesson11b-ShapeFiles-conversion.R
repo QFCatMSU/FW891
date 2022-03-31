@@ -12,10 +12,7 @@
   library(package = "rnaturalearth");     # for getting coord data
   library(package = "rnaturalearthdata"); # for getting coord data
 
-  # look for Geodetic CRS in simple feature
   museums = st_read(dsn="data/museum.csv");
-
-  # add the crs and coordinates so it can be converted into a simple feature
   museums_SF = st_as_sf(museums, 
                         coords = c("lng", "lat"),
                         crs = 4326);
@@ -27,7 +24,10 @@
             color = "red");
   plot(plot1);
   
+  
   #### Create your own shapefile ####
+  # CSVs are not standard shapefile!
+  
   # Check if file already exists -- don't recreate the file...
   if(!file.exists("shapefiles/museums.kml"))
   {
@@ -63,4 +63,10 @@
             mapping = aes(geometry = geometry),
             color = "red");
   plot(plot2);  # same as plot 1 no matter which shape file you use
+  
+  #### Application #####
+  #   Create a new type of shapefile from your own data file
+  #     - in R, create a SF from your data
+  #     - in R, save the SF in a different format (KML, geoJSON, SHP)
+  #   Open the new shapefile in R and plot it
 }

@@ -76,4 +76,9 @@
   plot(plot3);
 
   # You can save images from either the Plots tab or the Plot Zoom window...
+  
+  #### Application #####
+  #   - Allow for the maximum overlap so no label disappears
+  #   - Improve the arrows
+  #   - Add two other mappings to anything on the plot
 }

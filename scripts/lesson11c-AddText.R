@@ -14,11 +14,6 @@
   
   # the data frame museums
   museums = st_read(dsn="data/museum.csv");
-
-  # the simple features museums
-  # difference: SF has meta data (bounding box, CRS...) and
-  #             SF combines the coordinates into geometry
-  # Otherwise, they are the same
   museums_SF = st_as_sf(museums, 
                         coords = c("lng", "lat"),
                         crs = 4326);
@@ -34,6 +29,8 @@
   # You can also use the rnaturalearth package to get spatial files
   states = ne_states(country = "United States of America");
   states_SF = st_as_sf(states);
+  
+  #### Note: last component with a CRS determines the CRS for the whole plot ####
   
   # Remember that later component layer on top of earlier components
   plot1 = ggplot() +
@@ -114,4 +111,10 @@
   
   #### Nudging does not adapt to the CRS!
   #### And nudging by 5 feet does not change much
+  
+  
+  #### Application #####
+  #   Add a color mapping that distinguishes presidential library from 
+  #     non-presidential libraries (it's a column in the data frame...)
+  #   Change the default mapped colors using style_* component 
 }
