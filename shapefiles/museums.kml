@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="museums" id="museums">
+	<SimpleField name="museum" type="string"></SimpleField>
+	<SimpleField name="Presidential.Library" type="string"></SimpleField>
+</Schema>
+<Folder><name>museums</name>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">Abraham Linocln Presidential Museum</SimpleData>
+		<SimpleData name="Presidential.Library">Yes</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-89.647229,39.803323</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">William J. Clinton Library and Museum</SimpleData>
+		<SimpleData name="Presidential.Library">Yes</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-92.2585,34.746427</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">Milwaukee Art Museum</SimpleData>
+		<SimpleData name="Presidential.Library">No</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-87.896713,43.039437</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">Harley-Davidson Museum</SimpleData>
+		<SimpleData name="Presidential.Library">No</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-87.916779,43.031472</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">The Hermitage</SimpleData>
+		<SimpleData name="Presidential.Library">Yes</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-86.615115,36.214304</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">President James K. Polk Home and Museum</SimpleData>
+		<SimpleData name="Presidential.Library">Yes</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-87.037491,35.614919</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">National Civil Rights Museum</SimpleData>
+		<SimpleData name="Presidential.Library">No</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-90.057583,35.134642</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">George H.W. Bush Presidential Library and Museum</SimpleData>
+		<SimpleData name="Presidential.Library">Yes</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-96.353559,30.596558</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">Atlanta History Center</SimpleData>
+		<SimpleData name="Presidential.Library">No</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-84.386037,33.841997</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">Jimmy Carter Presidential Library and Museum</SimpleData>
+		<SimpleData name="Presidential.Library">Yes</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-84.356394,33.766191</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">Martin Luther King, Jr. National Historical Park</SimpleData>
+		<SimpleData name="Presidential.Library">No</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-84.373604,33.756326</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">World of Coca-Cola</SimpleData>
+		<SimpleData name="Presidential.Library">No</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-84.392902,33.762883</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">Smithsonian National Air and Space Museum</SimpleData>
+		<SimpleData name="Presidential.Library">No</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-77.01992,38.888046</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">Hirshhorn Museum</SimpleData>
+		<SimpleData name="Presidential.Library">No</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-77.023046,38.888147</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">Smithsonian National Museum of American History</SimpleData>
+		<SimpleData name="Presidential.Library">No</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-77.030101,38.891134</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">Smithsonian National Museum of Natural History</SimpleData>
+		<SimpleData name="Presidential.Library">No</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-77.026029,38.8911</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">National Galary of Art</SimpleData>
+		<SimpleData name="Presidential.Library">No</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-77.019915,38.891136</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">United States Botanic Garden</SimpleData>
+		<SimpleData name="Presidential.Library">No</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-77.012959,38.887948</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">George Washington's Mount Vernon</SimpleData>
+		<SimpleData name="Presidential.Library">Yes</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-77.08641,38.708117</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">Federal Reserve Bank of St Louis</SimpleData>
+		<SimpleData name="Presidential.Library">No</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-90.187815,38.629159</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">LBJ Presidential Library</SimpleData>
+		<SimpleData name="Presidential.Library">Yes</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-97.729451,30.285749</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">Houston Museum of Natural Science</SimpleData>
+		<SimpleData name="Presidential.Library">No</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-95.38947,29.721981</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">National Museum of the Pacific War</SimpleData>
+		<SimpleData name="Presidential.Library">No</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-98.867571,30.272889</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">Colonial Williamsburg Hisoric Area</SimpleData>
+		<SimpleData name="Presidential.Library">No</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-76.698798,37.279175</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">Monticello</SimpleData>
+		<SimpleData name="Presidential.Library">Yes</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-78.452324,38.010313</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">Montpelier</SimpleData>
+		<SimpleData name="Presidential.Library">Yes</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-78.168513,38.218862</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">James Monroe Museum and Memorial Library</SimpleData>
+		<SimpleData name="Presidential.Library">Yes</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-77.461662,38.302523</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#museums">
+		<SimpleData name="museum">Woodrow Wilson Presidential Library and Museum</SimpleData>
+		<SimpleData name="Presidential.Library">Yes</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-79.068843,38.150031</coordinates></Point>
+  </Placemark>
+</Folder>
+</Document></kml>

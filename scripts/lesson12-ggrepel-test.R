@@ -1,34 +1,40 @@
 { 
   rm(list=ls());  options(show.error.locations = TRUE);
-
+devtools::install_github("yutannihilation/ggsflabel")
   # sp needs to be installed before sf package but you will still
   # get an error about sp not being installed -- this can be ignored
-  library(package = "sp");       # old Simple Features (but still needed)
+  library(package = "sp");       #old Simple Features (but still needed)
   library(package = "rgeos");    # getting/converting crs
   library(package = "rgdal");    # getting/converting crs
   library(package = "ggplot2");
+  library(package = "dplyr");
   library(package = "sf");       # Simple Features
   library(package = "rnaturalearth");     # for getting coord data
   library(package = "rnaturalearthdata"); # for getting coord data
+  library(package = "ggrepel"); 
+  library(package = "ggsflabel"); 
   
-  ### How I downloaded the lakes... can someone test this code.
-  # lakes110 = ne_download(scale = 110, type = 'lakes', category = 'physical')
+  # lakes110 <- ne_download(scale = 110, type = 'lakes', category = 'physical')
+  # sp::plot(lakes110, col = 'blue');
   
-  # read in data from a csv file with spatial data
+  # look for Geodetic CRS in simple feature
+  
   museums = st_read(dsn="data/museum.csv");
   ## When you convert a CSV to a simple feature, you need to
   #   supply the longitude and latitude columns (in that order)
-  museums_SF1 = st_as_sf(museums, 
-                         coords = c("lng", "lat")); 
-  
-  #### look for Geodetic CRS in simple feature
-  ## The above SF has no crs -- will cause error when plotting
+  ## This SF has no crs -- will cause error when plotting
   #   error: cannot transform sfc object with missing crs
+  museums_SF1 = st_as_sf(museums, 
+                         coords = c("lng", "lat"));  # you need to provide long/lat columns
   
   # add the crs so it can be plotted
   museums_SF2 = st_as_sf(museums, 
                          coords = c("lng", "lat"),
-                         crs = 4326);  # it's a guess since no crs info was given
+                         crs = 4326);
+  
+  museums_SF3 = st_transform(museums_SF2, crs=26917);
+  
+  bb = st_bbox(museums_SF3);
   
   #### Group 1:
   #  Using a text editor (RStudio is a text editor):    
@@ -37,7 +43,7 @@
   
   ## KML files are google map files (similar to HTML files)
   #  KMZ files are also google map files that have been zipped
-  lakeMichigan = st_read(dsn="data/Lake_Michigan_shoreline.geojson");
+  lakeMichigan = st_read(dsn="data/Lake_Michigan_shoreline.kml");
   # KML files have the lat, long, and crs built in  -- you (usually) do not need to declare it
   lakeMI_SF = st_as_sf(lakeMichigan); 
   
@@ -47,32 +53,33 @@
   lakes = st_read(dsn="data/lakes/ne_10m_lakes.shp");  
   lakes_SF = st_as_sf(lakes); 
   
-  ### Getting data from a database (in this case, from naturalearth.com)
-  #    The database sends a data file -- which types depends on the database
   # get the state borders from naturalearth
   states = ne_states(country = "United States of America");
+  
+  # convert the states to a Simple Feature -- with a crs
   states_SF = st_as_sf(states);
-  
-  canada = ne_states(country = "Canada");
-  canada_SF = st_as_sf(canada);
-  
-  #### https://www.naturalearthdata.com/  (can get shapefiles from here)
-  #### https://rdrr.io/cran/rnaturalearth/api/ (R interface to naturalearth website)
-  #### https://gis-michigan.opendata.arcgis.com (Michigan shapefiles)
 
+  ### Natural Earth website
+  ### ArcGIS website
   
   # Remember that later component layer on top of earlier components
   plot1 = ggplot() +
-    geom_sf(data = canada_SF,
-            mapping = aes(geometry = geometry),
-            color = "black",
-            fill = "grey") +
+    geom_sf(data = states_SF,
+            mapping = aes(geometry = geometry, fill=region, linetype=type),
+            color = "black") +
+    geom_sf_label_repel(data = states_SF,
+                  mapping = aes(geometry=geometry, label=postal),
+                  color="orange", 
+              #    fill = "black",
+                  force=.5,
+              nudge_x = 5,
+              nudge_y = -3,
+                  size=3.5) + 
     geom_sf(data = lakes_SF,
-            mapping = aes(geometry = geometry),
-            color = "lightblue",
+            mapping = aes(geometry = geometry, color=scalerank),
             fill = "lightblue") +
     geom_sf(data = museums_SF2,
-            mapping = aes(geometry = geometry),      
+            mapping = aes(geometry = geometry, shape=Presidential.Library),      
             color = "red", 
             fill = "red") +
     geom_sf(data = lakeMI_SF,
@@ -96,27 +103,17 @@
         expand = TRUE);
   plot(plot3);
   
-
+  #### https://gis-michigan.opendata.arcgis.com
+  #### https://www.naturalearthdata.com/ 
+  #### https://spatialreference.org/ref/epsg/
     
-  ####Group 2
-  # - Zoom this map into Great Lakes region
-  # - Use UTM 14N (CRS = 26914)
-  # - add Canada to the map (from naturalearth.com or using ne_download()
-  # - add Lake Erie to the map (download from Michigan arcgis)
-  # - add Detroit, Chicago, Toronto as points to the map
-  # - Do the same plot with 2 other CRS 
+  # Zoom in to Great Lakes region
+  #### add Canada to the map ####
+  #### add Lake Erie to the map ###
+  #### add Detroit, Chicago, Toronto as points to the map ####
+  #### Use UTM 14N (26914) -- add get same view
+  #### Pick 2 other CRS from to use
   
-  ##Searchable list of CRS numbers:
-  # https://spatialreference.org/ref/epsg/  
-
-  
-  ### Homework: Create a map using your shapefile
-  #   - make sure you have an appropriate background map
-  #   - have an appropriate crs and axes zoomed appropriately 
-  
-  ### Next:
-  #   Manually add lines ####
-  #   Manually add text ####
-  #   Style mappings (e.g., color the regions)
-
+  ### Manually add lines ####
+  ### Manually add text ####
 }
