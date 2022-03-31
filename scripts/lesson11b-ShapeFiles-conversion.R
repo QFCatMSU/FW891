@@ -46,6 +46,8 @@
              driver = "GeoJSON");
   }
   ##   drivers: https://gdal.org/drivers/vector/index.html
+  # Note: When you call a database (like naturalearth) you are most likely getting
+  #       a SHP or KML file 
   
   ### These objects are already in shapefile format
   museums_KML = st_read(dsn="shapefiles/museums.kml");
