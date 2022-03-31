@@ -53,6 +53,8 @@
   #    - Multilinestring (mutiple linestrings)
   #    - Polygon    (linestring with a line connecting first and last point)
   #    - Multipolygon (mutiple polygons)
+  #    https://r-spatial.github.io/sf/articles/sf1.html
+  
   
   # Plot the museum simple feature by itself
   #  Note: geom_sf will use the "bounding box" to determine the axes
