@@ -55,7 +55,9 @@
                                                           start=1,
                                                           stop=3)),
             color="purple",
-            fill = "yellow");
+            fill = "yellow",
+            arrow = arrow());
+            #max-overlaps = 100);
   
   #### Notes:
   #    - You often need to click Zoom in the Plot tab to render the plot

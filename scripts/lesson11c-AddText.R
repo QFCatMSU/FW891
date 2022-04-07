@@ -43,10 +43,11 @@
             color = "lightblue",
             fill = "lightblue") +
     geom_sf_label(data = museums_SF,
-             mapping = aes(geometry=geometry, label=substr(museum,
+             mapping = aes(color=Presidential.Library,
+                           geometry=geometry, label=substr(museum,
                                                            start=1,
                                                            stop=3)),
-             color="purple",
+          #   color="purple",
              fill = "yellow") + 
     ### Note: Lake MI will cover up the labels...
     geom_sf(data = lakeMI_SF,
@@ -83,7 +84,8 @@
             color = "lightblue",
             fill = "lightblue") +
     geom_sf_label(data = museums_SF,
-             mapping = aes(geometry=geometry, label=substr(museum,
+             mapping = aes(
+                           geometry=geometry, label=substr(museum,
                                                            start=1,
                                                            stop=3)),
              color="purple",

@@ -40,7 +40,7 @@
     st_write(museums_SF, dsn = "shapefiles/museums.shp", 
              driver = "ESRI Shapefile");
   }
-  if(!file.exists("shapefiles/museums.shp"))
+  if(!file.exists("shapefiles/museums.geojson"))
   {
     st_write(museums_SF, dsn = "shapefiles/museums.geojson", 
              driver = "GeoJSON");
@@ -72,3 +72,4 @@
   #     - in R, save the SF in a different format (KML, geoJSON, SHP)
   #   Open the new shapefile in R and plot it
 }
+
