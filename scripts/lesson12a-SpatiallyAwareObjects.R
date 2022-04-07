@@ -38,8 +38,6 @@
                      bar_cols = c("red", "orange"),
                      line_col = "gray20",   
                      text_col = "blue") +
-    annotation_spatial_hline(intercept = c(40,50), color="red") +
-      
     annotation_north_arrow(location = "bl", 
                   height = unit(0.5, "in"),
                   which_north = "true", 

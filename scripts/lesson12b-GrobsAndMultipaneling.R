@@ -2,7 +2,7 @@
   rm(list=ls());  options(show.error.locations = TRUE);
   source(file="scripts/spatial-header.R"); # moved all package info to header.r
 
-  ### Read in plot saved in last lesson -- puits the plot in the Environment
+  ### Read in plot saved in last lesson -- puts the plot in the Environment
   plotInfo = readRDS(file="data/plot.RData");
   plot(plotInfo);  # same info but name has changed
 
