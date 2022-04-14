@@ -25,6 +25,7 @@
   ### Read in the first column and convert to a Date object
   stnDate = as.Date(pseudoData$date1,      # date1 is a chr (string) column
                     format="%b %d, %Y");   # give the format of date1
+                  
   
   ### Since date1 is in Date format, we can change to any format...
   date_formatted = format(stnDate, format="%m-%d-%y"); # this is a chr vector -- not Date

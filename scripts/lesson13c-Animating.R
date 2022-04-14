@@ -3,6 +3,13 @@
   source(file="scripts/spatial-header.R"); # moved all package info to header.r
   
   library(package = "gganimate");  # for animations
+  
+  # need to restart R after installing these packages -- otherwise you will get
+  # error: file_renderer failed to copy frames to the destination directory
+  library(package = "av");
+  library(package = "gifski");
+  library(package = "transformr");   
+
   ### The gganimate cheat sheet:
   #   https://ugoproto.github.io/ugo_r_doc/pdf/gganimate.pdf
   
@@ -15,7 +22,7 @@
                            crs=4326);
   
   ### A shapefile giving the Michigan state park boundaries 
-  ### The locations in psudoData map onto Waterloo and Pinckney State Parks
+  ### The locations in pseudoData map onto Waterloo and Pinckney State Parks
   statePark = st_read(dsn="shapefiles/Michigan_State_Park_Boundaries.geojson");
   
   ### Plot the state parks and the movement data 
