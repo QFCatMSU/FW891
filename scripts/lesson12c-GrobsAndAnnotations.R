@@ -29,8 +29,8 @@
   ggsave(filename="images/LakeMI.jpg", plot=plot_LakeMI, device=jpeg);
 
   # Read in the two images of Lake MI -- save to Environment
-  LakeMI_PNG = readPNG("images/LakeMI.png");   
-  LakeMI_JPG = readJPEG("images/LakeMI.jpg");  
+  LakeMI_PNG = readPNG("images/LakeMI.png");     # package: png
+  LakeMI_JPG = readJPEG("images/LakeMI.jpg");    # package jpeg
  
   #### Plot coordinates (from previous lesson) 
   #     xlim = c(-3000000, 2000000),  
