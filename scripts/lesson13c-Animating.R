@@ -69,7 +69,7 @@
   
   ### More useful to save as gif (again, nframes is small to keep rendering times manageable)
   anim_save(filename = "images/animate-pseudo.gif",   
-            animation = plot2b,
+            animation = plot2b,# plot to animate
             nframes = 10,      # number of frames in animation
             fps = 1);          # frames per second
    

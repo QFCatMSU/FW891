@@ -1,11 +1,10 @@
 { 
   rm(list=ls());  options(show.error.locations = TRUE);
-  source(file="scripts/spatial-header.R"); # moved all package info to header.r
-  
+
   pseudoData = read.csv("data/pseudoData.csv");
   
   ### 3 parts to formatting dates and date-times (similar to Simple Features)
-  #   1) Tell R how the date or date-time is formatted
+  #   1) Explicitly tell R how the date or date-time is formatted
   #   2) R returns a standardized date or date-time object to you
   #   3) Use the standardized object to extract/format information
   
@@ -15,7 +14,7 @@
   ### And a good video about why things are so complicated:
   # https://www.youtube.com/watch?v=-5wpm-gesOY
   
-  # date1 looks like this: Apr 15, 2022
+  # date1 column in pseudoData is chr and looks like this: Apr 15, 2022
   # broken down there is:
   #    - the abbreviation for the month (%b)
   #    - a space
@@ -23,7 +22,7 @@
   #    - a comma and a space
   #    - the 4-digit year (%Y)
   
-  ### Read in the first column and convert to a Date
+  ### Read in the first column and convert to a Date object
   stnDate = as.Date(pseudoData$date1,      # date1 is a chr (string) column
                     format="%b %d, %Y");   # give the format of date1
   
@@ -33,7 +32,7 @@
   ### Or, just pull info from it
   date_weekOfDay = format(stnDate, format="%A");       # this is a chr vector
   
-  # dateTime1 looks like this: 2022-04-15 09:56PM
+  # dateTime1 column in pseudoData looks like this: 2022-04-15 09:56PM
   # broken down there is:
   #    - the 4-digit year (%Y)
   #    - a dash
