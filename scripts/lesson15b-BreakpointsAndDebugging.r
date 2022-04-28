@@ -13,10 +13,10 @@
   #       - Step Out acts like Continue if you are in the main script
 
   #### To do:
-  #    1) Put breakpoint on line 24, demo Next, Continue, Stop
+  #    1) Put breakpoint on line 28, demo Next, Continue, Stop
   #    2) Put breakpoint in for loops, demo Next, Continue, Stop, Step Into
   #    3) Put in both breakpoints, demo Continue, Step Out
-  #    4) Demo breaking a for loop at a specific iteration?
+  #    4) Demo breaking a for loop at a specific iteration.
   
   doThis = function(val)
   {
@@ -33,6 +33,10 @@
   for(i in 1:length(vector1))
   {
     vector2[i] = sqrt(vector1[i]);  
+    if(i == 5)
+    {
+      cat(); # breakpoint here to stop at the 5th iteration
+    }
     vector3[i] = doThis(vector1[i]); # can step in to the function
     vector4[i] = vector1[i]^3;
   }
