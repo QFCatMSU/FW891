@@ -19,7 +19,7 @@
     LansingWeatherList[[i]] = tempData;
     
     ### A way to pause to for loop and look at the Environment (can be removed)
-    # readline(prompt = "Press enter");
+    #readline(prompt = "Press enter");
   }
   ### Give a name to each data frame in the list 
   names(LansingWeatherList) = csvFiles;  # oooh, don't like those names
