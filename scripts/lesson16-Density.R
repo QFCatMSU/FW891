@@ -1,8 +1,5 @@
 { 
   rm(list=ls());  options(show.error.locations = TRUE);
-
-  # sp needs to be installed before sf package but you will still
-  # get an error about sp not being installed -- this can be ignored
   library(package = "sp");       #old Simple Features (but still needed)
   library(package = "rgeos");    # getting/converting crs
   library(package = "rgdal");    # getting/converting crs

@@ -43,12 +43,12 @@
   
   dayOfWeek = format(realDates, format = "%A");
   
-  startTime = "2022-04-15 9:41pm";
+  startTime = "2022-04-15 9:42pm";
   startTimePosix = as.POSIXct(startTime,
                               format="%Y-%m-%d %I:%M%p",
                               tz=Sys.timezone());
   
-  startTimePosix = startTimePosix + 60*15;  # adds time in seconds
+  #startTimePosix = startTimePosix + 60*15;  # adds time in seconds
 
   pseudoData = data.frame(matrix(ncol=9, nrow=300));
   colnames(pseudoData) = c("date1", "date2", "date3",
@@ -62,9 +62,11 @@
   pseudoData$easting[1] = 650000;  # increase moves east
   pseudoData$individual[1] = 1;
   
+  timeStep = 30*60*60;
+  
   for(i in 2:100)
   {
-     currentTime = currentTime + 15*60;
+     currentTime = currentTime + timeStep;
      pseudoData = dateColumns(i, currentTime, pseudoData);
  #    pseudoData$dateTime[i] = format(currentTime,format="%Y-%m-%d %I:%M%p");
      pseudoData$northing[i] = pseudoData$northing[i-1] + sample(-100:100, 1);
@@ -82,7 +84,7 @@
   
   for(i in 102:200)
   {
-     currentTime = currentTime + 15*60;
+     currentTime = currentTime +  timeStep;
       pseudoData = dateColumns(i, currentTime, pseudoData);
   #   pseudoData$dateTime[i] = format(currentTime,format="%Y-%m-%d %I:%M%p");
      pseudoData$northing[i] = pseudoData$northing[i-1] + sample(-100:100, 1);
@@ -99,7 +101,7 @@
   
   for(i in 202:300)
   {
-     currentTime = currentTime + 15*60;
+     currentTime = currentTime + timeStep;
       pseudoData = dateColumns(i, currentTime, pseudoData);
    #  pseudoData$dateTime[i] = format(currentTime,format="%Y-%m-%d %I:%M%p");
      pseudoData$northing[i] = pseudoData$northing[i-1] + sample(-100:100, 1);
