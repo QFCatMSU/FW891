@@ -1,6 +1,8 @@
 { 
   rm(list=ls());  options(show.error.locations = TRUE);
 
+  ### Need instructions for installing Rtools in this lesson
+  
   #### Install package -- you will be prompted by RStudio 
   
   ### Issue with libraries being remembered -- but new computers will not have them
