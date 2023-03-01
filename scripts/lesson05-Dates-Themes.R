@@ -1,12 +1,10 @@
 {
-  # create a theme
-  # use theme in next lesson
-  # undoing geom defaults...
-  
   rm(list=ls());                         # clear Environment tab
   options(show.error.locations = TRUE);  # show line numbers on error
   library(package=ggplot2);              # get the GGPlot package
-  source(file="themes/ggplot_theme.r");
+  
+  source(file="scripts/ggplot_theme.r"); # themes defined in another script
+  
   # read in CSV file and save the content to weatherData
   weatherData = read.csv(file="data/Lansing2016NOAA.csv", 
                          stringsAsFactors = FALSE);  
@@ -33,15 +31,14 @@
   #### Part 1: Add year to date values ####
   # a) save the date vector from the data frame to the variable theDate
   theDate1 = weatherData$date; 
-
-  # theDate = weatherData[["date"]];  # equivalent to previous line
-  # theDate = weatherData[ , "date"]; # equivalent to previous 2 lines in base R not equivalent in TidyVerse
+  # theDate1 = weatherData[["date"]];  # equivalent to previous line
+  # theDate1 = weatherData[ , "date"]; # equivalent to previous 2 lines in base R not equivalent in TidyVerse
   
   # b) need a year in the date before formatting--
   #    append (paste) "-2016" to all values in theDate
   theDate2 = paste(theDate1, "-2016", sep="");
-  # theDate = paste(theDate, "2016", sep="-"); # functionally equivalent to previous line
-  # theDate = paste(theDate, "16", sep="-20"); # also equivalent 
+  # theDate2 = paste(theDate1, "2016", sep="-"); # functionally equivalent to previous line
+  # theDate2 = paste(theDate1, "16", sep="-20"); # also equivalent 
   
   # c) Save the values in Date format
   theDate3 = as.Date(theDate2, format="%m-%d-%Y");
@@ -81,7 +78,7 @@
                 method="loess",
                 color=rgb(red=1, green=0.5, blue=0), # orange
                 linetype=4,
-                size=2,
+                linewidth=2,
                 fill="lightgreen") +
     theme_bw() +
     labs(title = "Temperature throughout the year",
@@ -95,7 +92,8 @@
   ##   geom_path: Each group consists of only one observation. 
   ##   Do you need to adjust the group aesthetic?
   dateYrFormatted = format(weatherData$dateYr, format="%m/%d");
-  plot4= ggplot(data=weatherData[1:4,], mapping=aes(x=dateYrFormatted[1:4])) +
+  
+  plot4= ggplot(data=weatherData, mapping=aes(x=dateYrFormatted)) +
     geom_line(mapping=aes(y=maxTemp),
               color="violetred1") +
     geom_line(mapping=aes(y=minTemp),
@@ -104,7 +102,7 @@
                 method="loess",
                 color=rgb(red=1, green=0.5, blue=0), # orange
                 linetype=4,
-                size=2,
+                linewidth=2,
                 fill="lightgreen") +
     theme_bw() +
     labs(title = "Temperature throughout the year",
@@ -123,7 +121,7 @@
                 method="loess",
                 color=rgb(red=1, green=0.5, blue=0), # orange
                 linetype=4,
-                size=2,
+                linewidth=2,
                 fill="lightgreen") +
     scale_x_date(date_breaks = "5 weeks",
                  date_labels =  "%m/%d") +
@@ -144,13 +142,13 @@
                 method="loess",
                 color=rgb(red=1, green=0.5, blue=0), # orange
                 linetype=4,
-                size=2,
+                linewidth=2,
                 fill="lightgreen") +
     scale_x_date(date_breaks = "5 weeks",
                  date_labels =  "%m/%d") +
     theme_bw() +
     theme(panel.background = element_rect(fill="grey25",
-                                          size=2, color="grey0"),
+                                          linewidth=2, color="grey0"),
           panel.grid.minor = element_line(color="grey50", linetype=4),
           panel.grid.major = element_line(color="grey100"),
           plot.background = element_rect(fill = "lightgreen"),
@@ -173,7 +171,7 @@
                 method="loess",
                 color=rgb(red=1, green=0.5, blue=0), # orange
                 linetype=4,
-                size=2,
+                linewidth=2,
                 fill="lightgreen") +
     scale_x_date(date_breaks = "5 weeks",
                  date_labels =  "%m/%d") +

@@ -5,7 +5,7 @@ theme_ugly = function()
 
   ## then modify theme_bw() with the seven subcomponents below
     theme(panel.background = element_rect(fill="grey25",
-                                          size=2, color="grey0"),
+                                          linewidth=2, color="grey0"),
           panel.grid.minor = element_line(color="grey50", linetype=4),
           panel.grid.major = element_line(color="grey100"),
           plot.background = element_rect(fill = "lightgreen"),
@@ -22,7 +22,7 @@ theme_ugly = function()
 #   if you are eventually going to turn this into a package
 ugly =  theme_bw() + 
         theme(panel.background = element_rect(fill="grey25",
-                                              size=2, color="grey0"),
+                                              linewidth=2, color="grey0"),
         panel.grid.minor = element_line(color="grey50", linetype=4),
         panel.grid.major = element_line(color="grey100"),
         plot.background = element_rect(fill = "lightgreen"),
@@ -39,7 +39,7 @@ theme_uglyAdv = function()
   update_geom_defaults("point", list(color = "green"));
   update_geom_defaults("smooth", list(color = "red",
                                       linetype=4,
-                                      size=2,
+                                      linewidth=2,
                                       fill="lightblue"));
   
   # Detach and reattach ggplot2 -- this is a hack!
@@ -48,7 +48,7 @@ theme_uglyAdv = function()
   
   newTheme = theme_bw() + 
     theme(panel.background = element_rect(fill="grey25",
-                                          size=2, color="grey0"),
+                                          linewidth=2, color="grey0"),
           panel.grid.minor = element_line(color="grey50", linetype=4),
           panel.grid.major = element_line(color="grey100"),
           plot.background = element_rect(fill = "lightgreen"),
@@ -66,7 +66,7 @@ theme_uglyAdv_noDetach = function()
   update_geom_defaults("point", list(color = "green"));
   update_geom_defaults("smooth", list(color = "red",
                                       linetype=4,
-                                      size=2,
+                                      linewidth=2,
                                       fill="lightgreen"));
   
   # Detach and reattach ggplot2 -- this is a hack!
@@ -74,7 +74,7 @@ theme_uglyAdv_noDetach = function()
   
   newTheme = theme_bw() + 
     theme(panel.background = element_rect(fill="grey25",
-                                          size=2, color="grey0"),
+                                          linewidth=2, color="grey0"),
           panel.grid.minor = element_line(color="grey50", linetype=4),
           panel.grid.major = element_line(color="grey100"),
           plot.background = element_rect(fill = "lightgreen"),
