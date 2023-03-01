@@ -43,7 +43,7 @@
   plot(plot2);
 
   #### Part 3: Reordering the seasons ####
-  # Need to put seasonOrdered in the data frame
+  # Need to put seasonOrdered in the data frame to use with facet_grid()
   weatherData$seasonOrdered = seasonOrdered;
   
   # Use seasonOrdered (from the data frame) instead of season
@@ -51,15 +51,15 @@
     geom_histogram( mapping=aes(x=avgTemp),
                     color="black") +  
     theme_bw() +
-    facet_grid( rows=vars(seasonOrdered) ) + 
+    facet_grid( rows=seasonOrdered ) + 
     labs(title = "Temperature (\u00B0F)",
          subtitle = "Lansing, Michigan: 2016",
          x = "Temperature (\u00B0F)");     
   plot(plot3);
   
   #### Part 4: Reversing the facet equation ####
-  plot4 = plot3 +
-    facet_grid( cols=vars(seasonOrdered));
+  plot4 = plot3 +                             # take all components from plot3
+    facet_grid( cols = vars(seasonOrdered) ); # and rewrite the facet component
   plot(plot4);
 
   #### Part 5: Adding color and switching to a density plot ####
@@ -93,20 +93,40 @@
          x = "Temperature (\u00B0F)");     
   plot(plot6b);
   
-  ### Part 7: Boxplots ####
+  #### Part 6c: Free scaling -- each facet uses a different scale ####  
+  plot6c = ggplot( data=weatherData ) +
+    geom_bar( mapping=aes(x=avgTemp)) +  
+    theme_bw() +
+    facet_grid( rows = vars(seasonOrdered), 
+                scales="free") +  
+    labs(title = "Temperature (\u00B0F)",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (\u00B0F)");     
+  plot(plot6c);
+  
+  ### Part 7a: Boxplot ####
+  plot7a = ggplot(data=weatherData) +
+    geom_boxplot(mapping=aes(x=windDir, y=changeMaxTemp)) +
+    theme_bw() +
+    labs(title = "Change in Temperature vs. Wind Direction",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Wind Direction",
+         y = "Change in Temperature (\u00B0F)");
+  plot(plot7a);
+  
   ### Re-order the directions on the x-axis using factor(s)
   windDirOrdered = factor(weatherData$windDir,
                        levels=c("North", "East", "South", "West"));
   
-  #### A Boxplot ####
-  plot7 = ggplot(data=weatherData) +
+  #### A Reordering the Boxplot ####
+  plot7b = ggplot(data=weatherData) +
     geom_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp)) +
     theme_bw() +
     labs(title = "Change in Temperature vs. Wind Direction",
          subtitle = "Lansing, Michigan: 2016",
          x = "Wind Direction",
          y = "Change in Temperature (\u00B0F)");
-  plot(plot7);
+  plot(plot7b);
   
   #### Part 8: Map color to windSpeed(s)
   # windSpeedOrdered = factor(weatherData$windSpeedLevel,
@@ -203,8 +223,29 @@
          y = "Degrees (Fahrenheit)");
   plot(plot13);
   
-  #### Part 14: Extension -- Error bars  ####
-  plot14 = ggplot(data=weatherData) +          
+  ### Part 14: Changing facet labels
+  windLabels = c(Low = "Light Winds",
+                 Medium = "Medium Winds",
+                 High = "Strong Winds");
+
+  plot14 = ggplot(data=weatherData) +
+    geom_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
+                 na.rm = TRUE,   # gets rid of warning about non-finite values
+                 color = boxColors,
+                 fill = "grey50",
+                 outlier.color = rgb(red=0, green=0.3, blue=0),
+                 outlier.shape = "\u053e") +
+    theme_bw() +
+    facet_grid( cols=vars(windSpeedLevel),
+                labeller=as_labeller(windLabels)) +
+    labs(title = "Change in Temperature vs. Wind Direction",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Wind Direction",
+         y = "Degrees (Fahrenheit)");
+  plot(plot14);
+
+  #### Extension -- Error bars  ####
+  plotA = ggplot(data=weatherData) +          
       stat_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
                    na.rm=TRUE,
                    geom = "errorbar",   # adds the whisker ends
@@ -222,5 +263,5 @@
            subtitle = "Lansing, Michigan: 2016",
            x = "Wind Direction",
            y = "Degrees (Fahrenheit)");
-    plot(plot14);
+    plot(plotA);
 }
