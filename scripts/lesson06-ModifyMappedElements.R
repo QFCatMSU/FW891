@@ -23,7 +23,8 @@
   
   # Use the factored values in the plot
   plot2 = ggplot( data=weatherData ) +
-    geom_point( mapping=aes(x=avgTemp, y=relHum, color=seasonOrdered, size=precip2)) +
+    geom_point( mapping=aes(x=avgTemp, y=relHum, 
+                            color=seasonOrdered, size=precip2)) +
     theme_bw() +
     labs(title = "Humidity vs. Temperature",
          subtitle = "Lansing, Michigan: 2016",
@@ -56,12 +57,8 @@
   
   #### Part 5: Reordering the legend and changing labels ####
   plot5 = plot4 +
-    labs(title = "Humidity vs. Temperature",
-         subtitle = "Lansing, Michigan: 2016",
-         x = "Temperature (\u00B0F)",  
-         y = "Humidity (\u0025)",
-         color = "Seasons",
-         size = "Precipitation") +    
+    labs(color = "Seasons",
+         size = "Precipitation") +  
     guides(color = guide_legend(order=1),
            size = guide_legend(order=2));
   plot(plot5);
