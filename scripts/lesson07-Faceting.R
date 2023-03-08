@@ -120,34 +120,44 @@
     geom_point( mapping=aes(x=avgTemp, y=relHum)) +  
     theme_bw() +
     theme(strip.text = element_text(color="purple",
-                                              size=15),
+                                    size=15),
           strip.background.x = element_rect(color="red",
                                             fill="yellow"),
           strip.background.y = element_rect(color="blue",
                                             fill="lightgreen")) +
     facet_grid( rows = vars(seasonOrdered),
                 cols = vars(windSpeedLevel),
-                switch = c("both") ) +   # could use "x" or "y"
+                switch = "both") +  # could use "x" or "y" to switch only one axis
     labs(title = "Temperature (\u00B0F)",
          subtitle = "Lansing, Michigan: 2016",
          x = "Temperature (\u00B0F)");     
   plot(plot8);
   
-  #### Part 9: Facet_wrap ####
-  # Save the dateYr column in Date format
-  dateYrCol = as.Date(weatherData$dateYr, format="%Y-%m-%d");
-  # Extract the month from the dateYrCol vector
-  monthCol = format(dateYrCol, format="%b");
-  # Put monthCol in the data frame 
-  weatherData$monthCol = monthCol;
-  
+  #### Part 9: Facet_wrap with one variable ####
   plot9 = ggplot( data=weatherData ) +
     geom_point( mapping=aes(x=avgTemp, y=relHum)) +  
     theme_bw() +
-    facet_wrap( facets = "monthCol",
+    facet_wrap( facets = vars(windSusDir),
                 nrow = 4) +
     labs(title = "Temperature (\u00B0F)",
          subtitle = "Lansing, Michigan: 2016",
          x = "Temperature (\u00B0F)");     
   plot(plot9);
+  
+  #### Part 10: Facet_wrap with multiple variable ####
+  plot10 = ggplot( data=weatherData ) +
+    geom_point( mapping=aes(x=avgTemp, y=relHum)) +  
+    theme_bw() +
+    facet_wrap( facets = vars(seasonOrdered, windSpeedLevel),
+                ncol = 4,
+                dir = "v") +  # order facets vertically (default is "h" or horizontally)
+    labs(title = "Temperature (\u00B0F)",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Temperature (\u00B0F)");     
+  plot(plot10);
+  
+  # Save the dateYr column in Date format
+  dateYr2 = as.Date(weatherData$dateYr, format="%Y-%m-%d");
+  # Extract the month from the dateYr2 vector -- create a new column
+  weatherData$monthsCol = format(dateYr2, format="%b");
 }

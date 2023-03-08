@@ -9,36 +9,62 @@
   weatherData = read.csv(file="data/Lansing2016NOAA.csv", 
                          stringsAsFactors = FALSE);  # for people still using R v3
   
-  ### Part 7a: Boxplot ####
-  plot7a = ggplot(data=weatherData) +
+  ### Part 1: Boxplot ####
+  plot1 = ggplot(data=weatherData) +
     geom_boxplot(mapping=aes(x=windDir, y=changeMaxTemp)) +
     theme_bw() +
     labs(title = "Change in Temperature vs. Wind Direction",
          subtitle = "Lansing, Michigan: 2016",
          x = "Wind Direction",
          y = "Change in Temperature (\u00B0F)");
-  plot(plot7a);
+  plot(plot1);
   
   ### Re-order the directions on the x-axis using factor(s)
   windDirOrdered = factor(weatherData$windDir,
-                       levels=c("North", "East", "South", "West"));
+                          levels=c("North", "East", "South", "West"));
   
   #### A Reordering the Boxplot ####
-  plot7b = ggplot(data=weatherData) +
+  plot2 = ggplot(data=weatherData) +
     geom_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp)) +
     theme_bw() +
     labs(title = "Change in Temperature vs. Wind Direction",
          subtitle = "Lansing, Michigan: 2016",
          x = "Wind Direction",
          y = "Change in Temperature (\u00B0F)");
-  plot(plot7b);
+  plot(plot2);
   
-  #### Part 8: Map color to windSpeed(s)
+  ### Part 3: Changing Boxplot Axis ####
+  plot3 = ggplot(data=weatherData) +
+    geom_boxplot(mapping=aes(x=changeMaxTemp, y=windDir)) +
+    theme_bw() +
+    labs(title = "Change in Temperature vs. Wind Direction",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Wind Direction",
+         y = "Change in Temperature (\u00B0F)");
+  plot(plot3);
+  
+  set.seed(seed=12);
+  ### Part 4: Add points in jittered form ####
+  plot4 = ggplot(data=weatherData) +
+    geom_boxplot(mapping=aes(y=windDir, x=changeMaxTemp)) +
+    geom_jitter(mapping=aes(y=windDir, x=changeMaxTemp), 
+                height=0.3,   # range of random vertical component (-0.3 -> 0.3)
+                width = 0,    # no random horizontal component
+                alpha=0.2,    # make points semi-transparent
+                color="blue") + 
+    theme_bw() +
+    labs(title = "Change in Temperature vs. Wind Direction",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Wind Direction",
+         y = "Change in Temperature (\u00B0F)");
+  plot(plot4);
+  
+  #### Part 5: Map color to windSpeed(s)
   # windSpeedOrdered = factor(weatherData$windSpeedLevel,
   #                         levels=c("Low", "Medium", "High"));
   
   # A Boxplot with a mapping ####
-  plot8 = ggplot(data=weatherData) +
+  plot5 = ggplot(data=weatherData) +
     geom_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp, fill=windSpeedLevel),
                  na.rm = TRUE) +  # gets rid of warning about non-finite values
     theme_bw() +
@@ -47,10 +73,10 @@
          x = "Wind Direction",
          y = "Degrees (Fahrenheit)",
          fill = "Wind Speed");
-  plot(plot8);
+  plot(plot5);
   
-  #### Part 9: Same boxplot faceted by wind speed instead of mapped ####
-  plot9 = ggplot(data=weatherData) +
+  #### Part 6: Same boxplot faceted by wind speed instead of mapped ####
+  plot6 = ggplot(data=weatherData) +
     geom_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
                  na.rm = TRUE) +  
     theme_bw() +
@@ -59,9 +85,9 @@
          subtitle = "Lansing, Michigan: 2016",
          x = "Wind Direction",
          y = "Degrees (Fahrenheit)");
-  plot(plot9);
+  plot(plot6);
   
-  #### Part 10: violin plot (make this earlier!) ####
+  #### Part 7: violin plot ####
   plot10 = ggplot(data=weatherData) +
     geom_violin(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
                 na.rm = TRUE) +
@@ -71,9 +97,9 @@
          subtitle = "Lansing, Michigan: 2016",
          x = "Wind Direction",
          y = "Degrees (Fahrenheit)");
-  plot(plot10);
+  plot(plot7);
   
-  #### Part 11: Manually setting colors (not mapped!) ####
+  #### Part 8: Manually setting colors (not mapped!) ####
   plot11 = ggplot(data=weatherData) +
     geom_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
                  na.rm = TRUE,   # gets rid of warning about non-finite values
@@ -86,10 +112,10 @@
          x = "Wind Direction",
          y = "Degrees (Fahrenheit)",
          fill="Wind Speed");
-  plot(plot11);
+  plot(plot8);
 
   
-  #### Part 12: Manually setting all 12 boxes (not mapped!) ####
+  #### Part 9: Manually setting all 12 boxes (not mapped!) ####
   # there are 12 boxes to color so we need a vector with 12 colors:
   boxColors = c("blue", "blue", "blue", "brown",
                 "brown", "brown", "brown", "brown",
@@ -99,7 +125,7 @@
   boxColors = c(rep("blue", 3),
                 rep("brown", 9));
   
-  plot12 = ggplot(data=weatherData) +
+  plot9 = ggplot(data=weatherData) +
     geom_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
                  na.rm = TRUE,  
                  color = boxColors,
@@ -110,10 +136,10 @@
          subtitle = "Lansing, Michigan: 2016",
          x = "Wind Direction",
          y = "Degrees (Fahrenheit)");
-  plot(plot12);
+  plot(plot9);
 
-  #### Part 13: Messing with the outliers ####
-  plot13 = ggplot(data=weatherData) +
+  #### Part 10: Messing with the outliers ####
+  plot10 = ggplot(data=weatherData) +
     geom_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
                  na.rm = TRUE,   # gets rid of warning about non-finite values
                  color = boxColors,
@@ -126,14 +152,14 @@
          subtitle = "Lansing, Michigan: 2016",
          x = "Wind Direction",
          y = "Degrees (Fahrenheit)");
-  plot(plot13);
+  plot(plot10);
   
-  ### Part 14: Changing facet labels
+  ### Part 11: Changing facet labels
   windLabels = c(Low = "Light Winds",
                  Medium = "Medium Winds",
                  High = "Strong Winds");
 
-  plot14 = ggplot(data=weatherData) +
+  plot11 = ggplot(data=weatherData) +
     geom_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
                  na.rm = TRUE,   # gets rid of warning about non-finite values
                  color = boxColors,
@@ -147,10 +173,8 @@
          subtitle = "Lansing, Michigan: 2016",
          x = "Wind Direction",
          y = "Degrees (Fahrenheit)");
-  plot(plot14);
+  plot(plot11);
 
-  #### Part 15: Add date labels to the outlier ####
-  
   #### Extension -- Error bars  ####
   plotA = ggplot(data=weatherData) +          
       stat_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
