@@ -79,7 +79,7 @@
   ### Change order of legend and colors, and labels and theme
   plot5 = plot4 +    # make copy of last plot and add...
     scale_color_manual(breaks=c("minTemp", "avgTemp", "maxTemp"),
-                       values=c("blue","green", "red")) +
+                       values=c("blue",    "green",   "red")) +
     theme_bw() +
     labs(x = "Date",
          y = "Temperatures",
@@ -119,7 +119,7 @@
   plot(plot8);
   
   # Part 9: Conditionally add labels using which()
-  extremePoints = which(weatherData$relHum > 90 | weatherData$relHum < 40 |
+  extremePoints = which(weatherData$relHum > 90  | weatherData$relHum < 40 |
                         weatherData$avgTemp > 80 | weatherData$avgTemp < 10);  
   
   plot9 = plot6 +  # copy plot6 and append

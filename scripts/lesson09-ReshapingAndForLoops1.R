@@ -24,7 +24,7 @@
   # Makes the data frame easier to read -- does not functionally change anything
   rownames(Jan_Avg_Melt) = 1:217;
   
-  #   Essentially: plot temperature (y) ~ dayNum (x) and subset by year (color)
+  # Plot temperature (y) ~ dayNum (x) and subset by year (color)
   plot1 = ggplot(data = Jan_Avg_Melt) +
     geom_line(mapping=aes(x=dayNum, y=temperatures, color=year));
   plot(plot1);
@@ -175,10 +175,10 @@
       });
   } 
   
-  plot10 = plot10 +    # append to plot8 these components
+  plot10 = plot10 +    # append these components
     theme_bw() + 
-    scale_color_viridis(discrete = TRUE, # values are discrete (not continuous)
-                        option = "H",    # options are A-H, default is D (Viridis)
+    scale_color_viridis(discrete = TRUE, # values are discrete (FALSE: continuous)
+                        option = "H",    # options are A-H, default is D
                         direction = 1) + # -1 reverses colors
     labs(x = "Date",
          y = "Temp (\U00B0 C)",          # use unicode for the degree symbol
