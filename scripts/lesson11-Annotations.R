@@ -11,7 +11,8 @@
   ### Part 1: Boxplots ####
   ### Re-order the directions on the x-axis using factor(s)
   windDirOrdered = factor(weatherData$windDir,
-                       levels=c("North", "East", "South", "West"));
+                          levels=c("North", "East", 
+                                   "South", "West"));
   
   #### A Boxplot ####
   plot1 = ggplot(data=weatherData) +
@@ -29,6 +30,7 @@
   
   # Extract the outliers from the rendered data
   outliers = renderedData$data[[1]]$outliers;
+  # outliers = renderedData[["data"]][[1]][["outliers"]];  # eqivalent code
 
   #### Part 3: Add text to the plot ####
   plot3 = plot1 + 
@@ -55,7 +57,7 @@
   plot5 = plot1 + 
     annotate(geom="text",  
              x=c(2.9, 3.1, 2.9),        
-             y=c(-14, 18, 17),        
+             y=thirdBoxOutliers,        
              label=thirdBoxOutliers,   
              color=c("blue", "red", "red"));
   plot(plot5);
@@ -106,7 +108,7 @@
              yend=26,
              color = "red",
              linetype=2,
-             size = 0.5,
+             linewidth = 0.5,
              arrow = arrow());
   plot(plot8);
   
@@ -157,8 +159,8 @@
   plot12 = ggplot() + 
     theme_bw() +
      annotate(geom="point",
-             x = weatherData$avgTemp,# need to be explicit (because it's not mapped)
-             y = weatherData$relHum, # need to be explicit (because it's not mapped)
+             x = weatherData$avgTemp,  # adding every poin in avgTemp
+             y = weatherData$relHum,   # ... and relHum
              size = 3,
              color = "blue",
              fill = "red",
@@ -189,25 +191,26 @@
   plot14 = plot12 +
     geom_vline(mapping=aes(xintercept = meanTemp),
                color = "orange",
-               size= 2) +
+               linewidth = 2) +
     geom_hline(mapping=aes(yintercept = meanHum),
                color="purple",
-               size=2);
+               linewidth=2);
   plot(plot14);
   
   
   ##### Part 14b: Using annotate for vertical and horizontal lines (buggy) ####
+  #     The 4 warning message are all from this plot #
   plot14b = plot12 +
     annotate(geom="vline",
              xintercept = meanTemp,
              x = meanTemp, # x must be included but is ignored (this is a bug)
              color = "orange",
-             size= 2) +
+             linewidth= 2) +
     annotate(geom="hline",
              yintercept = meanHum,
              y = meanHum,  # y must be included but is ignored (this is a bug)
              color = "purple",
-             size= 2);
+             linewidth= 2);
   plot(plot14b);
   
   
@@ -219,7 +222,7 @@
                  alpha=0.2,   
                  color = "blue",
                  fill = "green",
-                 size=3,
+                 linewidth=3,
                  linetype=3);
   plot(plot15);
   
@@ -229,7 +232,7 @@
                  alpha=0.2,   
                  color = "blue",
                  fill = "green",
-                 size=3,
+                 linewidth=3,
                  linetype=3);
   plot(plot16);
 }
