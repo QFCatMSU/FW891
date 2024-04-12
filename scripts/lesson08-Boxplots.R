@@ -88,7 +88,7 @@
   plot(plot6);
   
   #### Part 7: violin plot ####
-  plot10 = ggplot(data=weatherData) +
+  plot7 = ggplot(data=weatherData) +
     geom_violin(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
                 na.rm = TRUE) +
     theme_bw() +
@@ -100,7 +100,7 @@
   plot(plot7);
   
   #### Part 8: Manually setting colors (not mapped!) ####
-  plot11 = ggplot(data=weatherData) +
+  plot8 = ggplot(data=weatherData) +
     geom_boxplot(mapping=aes(x=windDirOrdered, y=changeMaxTemp),
                  na.rm = TRUE,   # gets rid of warning about non-finite values
                  color = "brown",
