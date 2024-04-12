@@ -3,7 +3,7 @@
   options(show.error.locations = TRUE);  # show line numbers on error
   library(package=ggplot2);              # get the GGPlot package
   
-  source(file="scripts/ggplot_theme.r"); # themes defined in another script
+  source(file="scripts/ggplot_theming.r"); # themes defined in another script
   
   # read in CSV file and save the content to weatherData
   weatherData = read.csv(file="data/Lansing2016NOAA.csv", 
@@ -69,12 +69,12 @@
   
   #### Part 3: Move x to canvas --
   ###   only works because EVERY geom uses dateYr
-  plot3= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
-    geom_line(mapping=aes(y=maxTemp),
+  plot3= ggplot(data=weatherData, mapping=aes(x=dateYr)) +  # x mapping here
+    geom_line(mapping=aes(y=maxTemp),   # no x-mapping here
               color="violetred1") +
-    geom_line(mapping=aes(y=minTemp),
+    geom_line(mapping=aes(y=minTemp),   # no x-mapping here
               color=rgb(red=0.4, green=0.7, blue=0.9)) +
-    geom_smooth(mapping=aes(y=avgTemp),
+    geom_smooth(mapping=aes(y=avgTemp), # no x-mapping here
                 method="loess",
                 color=rgb(red=1, green=0.5, blue=0), # orange
                 linetype=4,
@@ -86,33 +86,9 @@
          x = "Day (row) number",
          y = "Temperature (F)");
   plot(plot3);
-  
-  #### Part 4: Convert date format -- will not work!
-  ## Note geom_path warning:
-  ##   geom_path: Each group consists of only one observation. 
-  ##   Do you need to adjust the group aesthetic?
-  dateYrFormatted = format(weatherData$dateYr, format="%m/%d");
-  
-  plot4= ggplot(data=weatherData, mapping=aes(x=dateYrFormatted)) +
-    geom_line(mapping=aes(y=maxTemp),
-              color="violetred1") +
-    geom_line(mapping=aes(y=minTemp),
-              color=rgb(red=0.4, green=0.7, blue=0.9)) +
-    geom_smooth(mapping=aes(y=avgTemp),
-                method="loess",
-                color=rgb(red=1, green=0.5, blue=0), # orange
-                linetype=4,
-                linewidth=2,
-                fill="lightgreen") +
-    theme_bw() +
-    labs(title = "Temperature throughout the year",
-         subtitle = "Lansing, Michigan: 2016",
-         x = "Day (row) number",
-         y = "Temperature (F)");
-  plot(plot4);
-  
-  #### Part 5: Convert date format and date breaks
-  plot5= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
+
+  #### Part 4: Convert date format and date breaks
+  plot4= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
     geom_line(mapping=aes(y=maxTemp),
               color="violetred1") +
     geom_line(mapping=aes(y=minTemp),
@@ -130,10 +106,10 @@
          subtitle = "Lansing, Michigan: 2016",
          x = "Day (row) number",
          y = "Temperature (F)");
-  plot(plot5);
+  plot(plot4);
 
-  #### Part 6: Add theme component
-  plot6= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
+  #### Part 5: Add theme component
+  plot5= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
     geom_line(mapping=aes(y=maxTemp),
               color="violetred1") +
     geom_line(mapping=aes(y=minTemp),
@@ -159,10 +135,10 @@
          subtitle = "Lansing, Michigan: 2016",
          x = "Day (row) number",
          y = "Temperature (F)");
-  plot(plot6);
+  plot(plot5);
   
-  #### Part 7: Use a theme saved elsewhere
-  plot7= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
+  #### Part 6: Use a theme saved elsewhere
+  plot6= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
     geom_line(mapping=aes(y=maxTemp),
               color="violetred1") +
     geom_line(mapping=aes(y=minTemp),
@@ -180,26 +156,43 @@
          subtitle = "Lansing, Michigan: 2016",
          x = "Day (row) number",
          y = "Temperature (F)");
-  plot(plot7);
+  plot(plot6);
   
-  #### Part 8: Include geom defaults in theme 
-  #     Note: you can only choose one property --
-  #           but you can further edit the colors
-  plot8= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
+  #### Part 7: Include geom defaults in theme 
+  modifyGeoms();   # function that changes the geoms
+  
+  plot7= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
     geom_line(mapping=aes(y=maxTemp)) +
     geom_line(mapping=aes(y=minTemp)) +
     geom_smooth(mapping=aes(y=avgTemp),
                 method="loess") +
     scale_x_date(date_breaks = "5 weeks",
                  date_labels = "%m/%d") +
-    theme_uglyAdv() +
+    theme_ugly() +
     labs(title = "Temperature throughout the year",
          subtitle = "Lansing, Michigan: 2016",
          x = "Day (row) number",
          y = "Temperature (F)");
-  plot(plot8);
+  plot(plot7);
  
-  #### Part 9: Forget to detach the defaults
+  #### Part 8: The defaults in GGPlot have been changed and will persist
+  plot8= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
+    geom_line(mapping=aes(y=maxTemp)) +
+    geom_line(mapping=aes(y=minTemp)) +
+    geom_smooth(mapping=aes(y=avgTemp),
+                method="loess") +
+    scale_x_date(date_breaks = "5 weeks",
+                 date_labels =  "%m/%d") +
+    labs(title = "Temperature throughout the year",
+         subtitle = "Lansing, Michigan: 2016",
+         x = "Day (row) number",
+         y = "Temperature (F)");
+  plot(plot8); 
+  
+  #### Part 9: Until you remove/reload GGPlot (or restart R) 
+  detach("package:ggplot2", unload = TRUE);   # remove ggplot package from session
+  library(package="ggplot2");                 # reload package ggplot
+  
   plot9= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
     geom_line(mapping=aes(y=maxTemp)) +
     geom_line(mapping=aes(y=minTemp)) +
@@ -207,25 +200,9 @@
                 method="loess") +
     scale_x_date(date_breaks = "5 weeks",
                  date_labels =  "%m/%d") +
-    theme_uglyAdv_noDetach() +
     labs(title = "Temperature throughout the year",
          subtitle = "Lansing, Michigan: 2016",
          x = "Day (row) number",
          y = "Temperature (F)");
   plot(plot9); 
-  
-  #### Part 10: Forget to detach the defaults stick around
-  #             this is a session variable!
-  plot10= ggplot(data=weatherData, mapping=aes(x=dateYr)) +
-    geom_line(mapping=aes(y=maxTemp)) +
-    geom_line(mapping=aes(y=minTemp)) +
-    geom_smooth(mapping=aes(y=avgTemp),
-                method="loess") +
-    scale_x_date(date_breaks = "5 weeks",
-                 date_labels =  "%m/%d") +
-    labs(title = "Temperature throughout the year",
-         subtitle = "Lansing, Michigan: 2016",
-         x = "Day (row) number",
-         y = "Temperature (F)");
-  plot(plot10); 
 }  
