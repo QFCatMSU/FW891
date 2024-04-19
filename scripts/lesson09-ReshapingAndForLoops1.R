@@ -4,7 +4,7 @@
   library(package = "viridis");   # used in last plot for better colors
 
   ### New dataframe: January temperatures in Lansing 2016-2022
-  Jan_Avg = read.csv(file = "data/Jan_TAVG.csv");
+  Jan_Avg = read.csv(file = "data/Jan_TAVG.csv", check.names = FALSE);
   
   ### Part 1: creating and plotting a melted dataframe
 
@@ -12,15 +12,15 @@
   Jan_Avg_Melt = reshape(data=Jan_Avg,             # data frame to manipulate
                          direction="long",         # how to manipulate (switch to long form) 
                          #### Columns you are combining (melting together)
-                         varying=c(1:7),           # columns to "melt" (in this case, all 7)
-                         v.name="temperatures",    # name of new combined melted column
+                         varying=c(1:7),           # columns to combine (melt)
+                         v.name="temperatures",    # name of new combined column
                          #### The new subsetting column 
                          times=colnames(Jan_Avg),  # values for the grouping columnn 
                          timevar = "year",         # name of the groups
                          #### The new individual column
                          ids = as.numeric(rownames(Jan_Avg)),  # values for the individuals
                          idvar = "dayNum",   # name of the individuals columns
-                         new.row.names = 1:nrow(Jan_Avg_Melt));         
+                         new.row.names = 1:217);         
 
   # Makes the data frame easier to read -- does not functionally change anything
   rownames(Jan_Avg_Melt) = 1:217;
@@ -111,7 +111,7 @@
   #   Why this does not work is important to understand
   plot6 = ggplot(); 
   
-  ### Make a line plot for each of the seven columns  
+  ### Cycle through the seven columns and make a line plot for each
   for(i in 1:ncol(Jan_Avg))   # same as 1:7
   {
     plot6 = plot6 + 
@@ -128,7 +128,7 @@
   for(i in 1:ncol(Jan_Avg))   # same as 1:7
   { 
     plot7 = plot7 +
-     local({   # An instruction to evaluate local variables 
+     local({   # An instruction to evaluate local variables immediately
         i=i;   # Makes the i value local
         geom_line(mapping=aes(x=as.numeric(rownames(Jan_Avg)), 
                               y=Jan_Avg[,i], 
