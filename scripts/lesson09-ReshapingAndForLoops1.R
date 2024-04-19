@@ -4,7 +4,7 @@
   library(package = "viridis");   # used in last plot for better colors
 
   ### New dataframe: January temperatures in Lansing 2016-2022
-  Jan_Avg = read.csv(file = "data/Jan_TAVG.csv", check.names = FALSE);
+  Jan_Avg = read.csv(file = "data/Jan_TAVG.csv");
   
   ### Part 1: creating and plotting a melted dataframe
 
