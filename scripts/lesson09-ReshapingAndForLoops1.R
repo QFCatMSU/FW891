@@ -19,7 +19,8 @@
                          timevar = "year",         # name of the groups
                          #### The new individual column
                          ids = as.numeric(rownames(Jan_Avg)),  # values for the individuals
-                         idvar = "dayNum");         # name of the individuals columns
+                         idvar = "dayNum",   # name of the individuals columns
+                         new.row.names = 1:nrow(Jan_Avg_Melt));         
 
   # Makes the data frame easier to read -- does not functionally change anything
   rownames(Jan_Avg_Melt) = 1:217;
